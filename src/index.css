@@ -8,8 +8,10 @@ h1 {
   margin-left: 0%;
   margin-right: 0%;
   padding: auto;
-  color: rgb(237, 231, 231);
+  color: white;
   background-color: #222e18;
+  text-align: center;
+  padding: 10px 10px;
 }
 
 h2 {
@@ -17,6 +19,7 @@ h2 {
   color:black;
   margin: 0%;
   background-color: #c2f891;
+  padding: 10px 10px;
 }
 
 h3 {
