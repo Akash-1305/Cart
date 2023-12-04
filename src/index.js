@@ -13,9 +13,7 @@ const products = [
 
 const ShoppingCart = () => {
   const [cart, setCart] = useState([]);
-  // eslint-disable-next-line
   const [view, setView] = useState('products'); 
-  // eslint-disable-next-line
   const [placedOrder, setPlacedOrder] = useState(false);
   
   const addToCart = (productId) => {
@@ -50,36 +48,26 @@ const ShoppingCart = () => {
 
    
   const isValidName = (name) => /^[a-zA-Z ]+$/.test(name);
-  const isValidMobileNumber = (mobile) => /^\d{10}$/.test(mobile);
   const getCustomerInput = (promptText) => prompt(promptText)?.trim();
 
   const placeOrder = () => {
     const customerName = getCustomerInput('Enter your name:');
     if (!customerName) return alert('Order canceled. No information provided.');
+    const paymentMethod = getCustomerInput('Choose payment method (Online / Cash):');
 
-    const customerAddress = getCustomerInput('Enter your address:');
-    if (!customerAddress && !window.confirm('Do you want to cancel the order?'))
-      return placeOrder();
-    if (!customerAddress) return alert('Order canceled. No information provided.');
-
-    const customerMobile = getCustomerInput('Enter your mobile number:');
-    const paymentMethod = getCustomerInput('Choose payment method (Online / Cash on Delivery):');
-
-    if (!customerMobile || !paymentMethod)
+    if (!paymentMethod)
       return alert('Please fill in all the required information.');
     if (!isValidName(customerName))
       return alert('Please enter a valid name containing only alphabets and spaces.');
-    if (!isValidMobileNumber(customerMobile))
-      return alert('Please enter a valid 10-digit mobile number.');
 
-    const validPaymentMethods = ['Online', 'Cash on Delivery'];
+    const validPaymentMethods = ['Online', 'Cash'];
     if (!validPaymentMethods.includes(paymentMethod))
       return alert('Please choose a valid payment method.');
 
     const totalAmount = getTotal();
     setPlacedOrder(true);
     setCart([]);
-    alert(`Order placed successfully! Thank you for your purchase. Total Amount: $${totalAmount}`);
+    alert(`Order placed successfully! Thank you for your purchase. Total Amount: ₹${totalAmount}`);
   };
 
   return (
@@ -93,8 +81,8 @@ const ShoppingCart = () => {
             {products.map((product) => (
               <li key={product.id}>
                 <div className='shopping-cart'>
-                  <img src={product.image} alt={product.name} className="product-image" height={"200px"} width={"200px"} margin={"0px"} /><br></br>
-                  {product.name} - ${product.price}<br></br>
+                  <img src={product.image} alt={product.name} className="product-image" height={"200px"} width={"300px"} margin={"0px"} /><br></br>
+                  {product.name} - ₹{product.price}<br></br>
                   <button onClick={() => addToCart(product.id)} aria-label={`Add ${product.name} to Cart`} className="add-to-cart-button">
                     Add to Cart</button>
                 </div>
@@ -112,8 +100,8 @@ const ShoppingCart = () => {
             {cart.map((item) => (
               <li key={item.product.id}>
                 <div className='shopping-cart'>
-                  <img src={item.product.image} alt={item.product.name} className="cart-image" height={"200px"} width={"200px"} margin={"0px"} /><br></br>
-                  {item.product.name} - ${item.product.price} - Quantity: {item.quantity}<br></br>
+                  <img src={item.product.image} alt={item.product.name} className="cart-image" height={"200px"} width={"300px"} margin={"0px"} /><br></br>
+                  {item.product.name} - ₹{item.product.price} - Quantity: {item.quantity}<br></br>
                   <button onClick={() => modifyCart(item.product.id, 'add')} className="add-button">+</button>
                   <button onClick={() => modifyCart(item.product.id, 'remove')} className="remove-button">-</button>
                   <button onClick={() => removeFromCart(item.product.id)} className="remove-button">Remove</button>
@@ -122,10 +110,10 @@ const ShoppingCart = () => {
             ))}
           </ul>
 
-          <button className="total-button">Total: ${getTotal()}</button>
+          Total: ₹{getTotal()}
           <div className='shopping-cart'>
             {cart.length > 0 && <button onClick={placeOrder} className="order-button">Place Order</button>}
-            <br></br><br></br>
+            <br></br>
             <button onClick={() => setView('products')}>Back to Products</button>
           </div>
         </div>
