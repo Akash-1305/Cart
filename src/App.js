@@ -23,7 +23,7 @@ const removefromcart=(product)=>{
 };
 return(
   <div className='app'>
-    <h1 id="shopping"><center>Shopping center</center></h1>
+    <h1 id="shopping"><center>Shop here</center></h1>
     <div className="product-container">
       {products.map((product)=>(
       <Product product={product}onAddtoCart={AddtoCart}/>
