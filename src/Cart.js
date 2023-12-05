@@ -11,14 +11,14 @@ import React from 'react';
           <div>
             {cart.map((item) => (
               <div key={item.id}>
-                {item.name}
-                <img src={item.image} style={{ height: '200px', width: '300px' }} alt={item.name} />
-                {item.price}
+                {item.name}<br/>
+                <img src={item.image} style={{ height: '200px', width: '300px' }} alt={item.name} /><br/>
+                {item.price}<br/>
                 <button onClick={() => onRemoveFromCart(item)}>Remove</button>
               </div>
             ))}
           </div>
-          <button onClick={() => Calculate(cart)}>Proceed</button>
+          <button id='Proceed' onClick={() => Calculate(cart)}>Proceed</button>
         </center>
       </div>
     );
