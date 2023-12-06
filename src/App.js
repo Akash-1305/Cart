@@ -22,9 +22,9 @@ const removefromcart=(product)=>{
   setCart(cart.filter((item)=>item.id !== product.id));
 };
 return(
-  <div className='app'>
+  <div>
     <h1 id="shopping"><center>Shop here</center></h1>
-    <div className="product-container">
+    <div>
       {products.map((product)=>(
       <Product product={product}onAddtoCart={AddtoCart}/>
       ))}

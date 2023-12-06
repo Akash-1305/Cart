@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css'
 function Product({product,onAddtoCart}){
 return (
-    <div className="product-list">
+    <div>
         <h2 id="product-name">{product.name}</h2>
         <img src={product.image} style={{height: "200px", width: "300px"}} id ="product-img"></img>
         <p id="product-price">{product.price}</p>
