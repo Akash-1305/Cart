@@ -16,21 +16,21 @@ function App(){
 
   const AddtoCart=(product)=>{
   setCart([...cart,product]);
-};
+  };
 
-const removefromcart=(product)=>{
-  setCart(cart.filter((item)=>item.id !== product.id));
-};
-return(
-  <div>
-    <h1 id="shopping"><center>Shop here</center></h1>
+  const removefromcart=(product)=>{
+    setCart(cart.filter((item)=>item.id !== product.id));
+  };
+  return(
     <div>
-      {products.map((product)=>(
-      <Product product={product}onAddtoCart={AddtoCart}/>
-      ))}
+      <h1 id="shopping"><center>Shop here</center></h1>
+      <div>
+        {products.map((product)=>(
+        <Product product={product}onAddtoCart={AddtoCart}/>
+        ))}
+      </div>
+      <Cart cart={cart} onRemoveFromCart={removefromcart}/>
     </div>
-    <Cart cart={cart} onRemoveFromCart={removefromcart}/>
-  </div>
-);
+  );
 }
 export default App;

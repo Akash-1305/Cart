@@ -11,6 +11,8 @@ const Calculate = (cart) =>
         else{
         data.forEach((data)=>{ i = i+ data})
         window.alert(`The total amount is ${i}`)
+        i=0;
+        window.alert("Thank you for shopping")
     }
 }
 
